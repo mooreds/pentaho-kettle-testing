@@ -1,0 +1,2 @@
+test name no spaces,input file, expected file
+simplerun,simplerun/input.txt,simplerun/expected.txt
