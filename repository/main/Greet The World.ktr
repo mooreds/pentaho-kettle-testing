@@ -68,12 +68,12 @@
   <created_user>-</created_user>
   <created_date>2013&#47;04&#47;11 21:03:17.404</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;04&#47;17 21:52:37.171</modified_date>
+  <modified_date>2013&#47;04&#47;19 21:55:51.220</modified_date>
   </info>
   <notepads>
   </notepads>
   <order>
-  <hop> <from>Get rows from result</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Concat Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Concat Fields</from><to>Text file output</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Concat Fields</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Age based greeting</from><to>Concat Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Get rows from result</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Age based greeting</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -96,11 +96,22 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>howdy</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Howdy</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>251</xloc>
-      <yloc>90</yloc>
+      <xloc>237</xloc>
+      <yloc>88</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -148,7 +159,7 @@
     </file>
     <fields>
       <field>
-        <name>hello</name>
+        <name>greeting_prefix</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -179,8 +190,8 @@
     </ConcatFields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>374</xloc>
-      <yloc>90</yloc>
+      <xloc>553</xloc>
+      <yloc>88</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -210,7 +221,7 @@
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>122</xloc>
-      <yloc>90</yloc>
+      <yloc>88</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -294,18 +305,6 @@
         <precision>0</precision>
       </field>
       <field>
-        <name>hello</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>greeting</name>
         <type>String</type>
         <format/>
@@ -320,8 +319,45 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>90</yloc>
+      <xloc>729</xloc>
+      <yloc>88</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Age based greeting</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+var greeting_prefix;
+
+if (age &lt; 30) {
+	greeting_prefix = howdy;
+} else {
+	greeting_prefix = hello;
+}
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>greeting_prefix</name>
+        <rename>greeting_prefix</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>409</xloc>
+      <yloc>88</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
