@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2013&#47;04&#47;13 14:11:35.718</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;04&#47;19 21:20:44.782</modified_date>
+  <modified_date>2013&#47;04&#47;19 21:31:19.939</modified_date>
     <parameters>
         <parameter>
             <name>base.job.dir</name>
@@ -129,7 +129,7 @@
         </field>
         <field>
           <variable_name>output.file.var</variable_name>
-          <variable_value>${base.job.dir}&#47;build&#47;output.txt</variable_value>
+          <variable_value>${base.job.dir}&#47;build&#47;output&#47;output.txt</variable_value>
           <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
