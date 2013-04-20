@@ -1,2 +1,3 @@
 test name no spaces,input file, expected file
 simplerun,simplerun/input.txt,simplerun/expected.txt
+agebasedgreeting,agebasedgreeting/input.txt,agebasedgreeting/expected.txt
