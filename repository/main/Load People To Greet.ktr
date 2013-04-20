@@ -8,6 +8,11 @@
     <trans_status>0</trans_status>
     <directory>&#47;main</directory>
     <parameters>
+        <parameter>
+            <name>input.file</name>
+            <default_value/>
+            <description>Input File</description>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -63,12 +68,30 @@
   <created_user>-</created_user>
   <created_date>2013&#47;04&#47;11 21:18:54.545</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;04&#47;11 21:19:33.045</modified_date>
+  <modified_date>2013&#47;04&#47;16 21:08:36.796</modified_date>
   </info>
   <notepads>
   </notepads>
   <order>
   <hop> <from>Text file input</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Copy rows to result</name>
+    <type>RowsToResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>322</xloc>
+      <yloc>137</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Text file input</name>
     <type>TextFileInput</type>
@@ -106,7 +129,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Documents and Settings\Dan\My Documents\pentaho\testing-kettle\file.txt</name>
+      <name>${input.file}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -192,24 +215,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>174</xloc>
       <yloc>134</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Copy rows to result</name>
-    <type>RowsToResult</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>322</xloc>
-      <yloc>137</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
