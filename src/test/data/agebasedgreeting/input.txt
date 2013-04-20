@@ -1,0 +1,6 @@
+firstname;lastname;age
+Joe;Smith;12
+Jane;Doe;29
+John;Johnson;39
+Jack;Smith;30
+Jackie;Downs;31
