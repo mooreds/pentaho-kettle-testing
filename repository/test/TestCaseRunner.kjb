@@ -8,8 +8,28 @@
   <created_user>-</created_user>
   <created_date>2013&#47;04&#47;13 14:11:35.718</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;04&#47;16 21:29:13.859</modified_date>
+  <modified_date>2013&#47;04&#47;19 20:43:37.189</modified_date>
     <parameters>
+        <parameter>
+            <name>base.job.dir</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>expected.file</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>input.file</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>test.name</name>
+            <default_value/>
+            <description/>
+        </parameter>
     </parameters>
     <slaveservers>
     </slaveservers>
@@ -51,7 +71,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>114</xloc>
-      <yloc>75</yloc>
+      <yloc>72</yloc>
       </entry>
     <entry>
       <name>Load People To Greet</name>
@@ -86,7 +106,7 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>580</xloc>
+      <xloc>602</xloc>
       <yloc>72</yloc>
       </entry>
     <entry>
@@ -98,31 +118,31 @@
       <file_variable_type>JVM</file_variable_type>
       <fields>
         <field>
-          <variable_name>base.job.dir</variable_name>
-          <variable_value>c:&#47;Documents and Settings&#47;Dan&#47;My Documents&#47;pentaho&#47;pentaho-testing</variable_value>
-          <variable_type>JVM</variable_type>
-        </field>
-        <field>
           <variable_name>input.file.var</variable_name>
-          <variable_value>${base.job.dir}&#47;src&#47;test&#47;data&#47;simplerun&#47;input.txt</variable_value>
-          <variable_type>JVM</variable_type>
+          <variable_value>${base.job.dir}&#47;src&#47;test&#47;data&#47;${input.file}</variable_value>
+          <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>expected.file.var</variable_name>
-          <variable_value>${base.job.dir}&#47;src&#47;test&#47;data&#47;simplerun&#47;expected.txt</variable_value>
-          <variable_type>JVM</variable_type>
+          <variable_value>${base.job.dir}&#47;src&#47;test&#47;data&#47;${expected.file}</variable_value>
+          <variable_type>CURRENT_JOB</variable_type>
         </field>
         <field>
           <variable_name>output.file.var</variable_name>
           <variable_value>${base.job.dir}&#47;build&#47;output.txt</variable_value>
-          <variable_type>JVM</variable_type>
+          <variable_type>CURRENT_JOB</variable_type>
+        </field>
+        <field>
+          <variable_name>test.name</variable_name>
+          <variable_value>${test.name}</variable_value>
+          <variable_type>CURRENT_JOB</variable_type>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>75</yloc>
+      <xloc>236</xloc>
+      <yloc>72</yloc>
       </entry>
     <entry>
       <name>Greet The World</name>
@@ -157,7 +177,7 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>718</xloc>
+      <xloc>724</xloc>
       <yloc>72</yloc>
       </entry>
     <entry>
@@ -170,7 +190,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>850</xloc>
+      <xloc>853</xloc>
       <yloc>72</yloc>
       </entry>
     <entry>
@@ -181,8 +201,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>374</xloc>
-      <yloc>210</yloc>
+      <xloc>384</xloc>
+      <yloc>378</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -191,20 +211,76 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>851</xloc>
-      <yloc>208</yloc>
+      <xloc>853</xloc>
+      <yloc>393</yloc>
+      </entry>
+    <entry>
+      <name>Create output folder</name>
+      <description/>
+      <type>CREATE_FOLDER</type>
+      <foldername>${base.job.dir}&#47;build&#47;output</foldername>
+      <fail_of_folder_exists>N</fail_of_folder_exists>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>358</xloc>
+      <yloc>72</yloc>
+      </entry>
+    <entry>
+      <name>Delete folders on success</name>
+      <description/>
+      <type>DELETE_FOLDERS</type>
+      <arg_from_previous>N</arg_from_previous>
+      <success_condition>success_if_no_errors</success_condition>
+      <limit_folders>10</limit_folders>
+      <fields>
+        <field>
+          <name>${base.job.dir}&#47;build&#47;output</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>853</xloc>
+      <yloc>286</yloc>
+      </entry>
+    <entry>
+      <name>Create success file</name>
+      <description/>
+      <type>CREATE_FILE</type>
+      <filename>${base.job.dir}&#47;build&#47;results&#47;${test.name}.success</filename>
+      <fail_if_file_exists>N</fail_if_file_exists>
+      <add_filename_result>N</add_filename_result>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>853</xloc>
+      <yloc>179</yloc>
       </entry>
     <entry>
       <name>Create results folder</name>
       <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>${base.job.dir}&#47;build&#47;</foldername>
+      <foldername>${base.job.dir}&#47;build&#47;results</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>383</xloc>
-      <yloc>73</yloc>
+      <xloc>480</xloc>
+      <yloc>72</yloc>
+      </entry>
+    <entry>
+      <name>Create fail file </name>
+      <description/>
+      <type>CREATE_FILE</type>
+      <filename>${base.job.dir}&#47;build&#47;results&#47;${test.name}.fail</filename>
+      <fail_if_file_exists>N</fail_if_file_exists>
+      <add_filename_result>N</add_filename_result>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>387</xloc>
+      <yloc>284</yloc>
       </entry>
   </entries>
   <hops>
@@ -237,43 +313,7 @@
     </hop>
     <hop>
       <from>Set variables</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load People To Greet</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Greet The World</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>File Compare</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>File Compare</from>
-      <to>Success</to>
+      <to>Create output folder</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -281,7 +321,34 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Set variables</from>
+      <from>Delete folders on success</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>File Compare</from>
+      <to>Create success file</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Create success file</from>
+      <to>Delete folders on success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Create output folder</from>
       <to>Create results folder</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -299,8 +366,62 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Set variables</from>
+      <to>Create fail file </to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create output folder</from>
+      <to>Create fail file </to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Create results folder</from>
+      <to>Create fail file </to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create fail file </from>
       <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load People To Greet</from>
+      <to>Create fail file </to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Greet The World</from>
+      <to>Create fail file </to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>File Compare</from>
+      <to>Create fail file </to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
