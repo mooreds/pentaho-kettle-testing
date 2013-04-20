@@ -1,11 +1,11 @@
-firstname;lastname;age;hello;greeting
-Joe;Smith; 12;Howdy;Howdy Joe
+firstname;lastname;age;greeting
+Joe;Smith; 12;Howdy Joe
 
-Jane;Doe; 29;Howdy;Howdy Jane
+Jane;Doe; 29;Howdy Jane
 
-John;Johnson; 39;Hello;Hello John
+John;Johnson; 39;Hello John
 
-Jack;Smith;30;Hello;Hello Jack
+Jack;Smith; 30;Hello Jack
 
-Jackie;Downs;31;Hello;Hello Jackie
+Jackie;Downs; 31;Hello Jackie
 

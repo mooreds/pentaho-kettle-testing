@@ -1,7 +1,7 @@
-firstname;lastname;age;hello;greeting
-Joe;Smith; 12;Hello;Hello Joe
+firstname;lastname;age;greeting
+Joe;Smith; 12;Howdy Joe
 
-Jane;Doe; 29;Hello;Hello Jane
+Jane;Doe; 29;Howdy Jane
 
-John;Johnson; 39;Hello;Hello John
+John;Johnson; 39;Hello John
 
